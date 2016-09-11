@@ -20,10 +20,6 @@ import tv.danmaku.ijk.media.player.IMediaPlayer;
 import tv.danmaku.ijk.media.player.IjkMediaPlayer;
 
 public class PlayerActivity extends AppCompatActivity {
-    @BindView(R.id.sb)
-    SeekBar seekBar;
-    @BindView(R.id.sb2)
-    SeekBar seekBar2;
     @BindView(R.id.video_view)
     IjkVideoView videoView;
     @BindView(R.id.hud_view)
@@ -42,8 +38,8 @@ public class PlayerActivity extends AppCompatActivity {
 
         IjkMediaPlayer.loadLibrariesOnce(null);
         IjkMediaPlayer.native_profileBegin("libijkplayer.so");
-       /* androidMediaController = new AndroidMediaController(this, false);
-        videoView.setMediaController(androidMediaController);*/
+        androidMediaController = new AndroidMediaController(this, false);
+        videoView.setMediaController(androidMediaController);
         videoView.setHudView(tableLayout);
         videoView.setVideoURI(Uri.parse("http://mc.yamabu.moe/fd.mp4"));
 
@@ -53,43 +49,6 @@ public class PlayerActivity extends AppCompatActivity {
                 videoView.start();
             }
         });
-
-        new Thread() {
-            @Override
-            public void run() {
-                try {
-                    while (true) {
-                        seekBar.setProgress((int) (((float) videoView.getCurrentPosition()) /
-                                videoView
-                                .getDuration() * 100));
-                        seekBar2.setProgress(videoView.getBufferPercentage());
-                        sleep(50);
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        }.start();
-
-
-        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
-        });
-
-
         audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
     }
 
