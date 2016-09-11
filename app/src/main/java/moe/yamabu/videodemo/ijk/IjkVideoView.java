@@ -709,11 +709,12 @@ public class IjkVideoView extends FrameLayout implements MediaController.MediaPl
     }
 
     @Override
-    public boolean onTouchEvent(MotionEvent ev) {
-        if (isInPlaybackState() && mMediaController != null) {
-            toggleMediaControlsVisiblity();
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        if(!mMediaController.isShowing()){
+            mMediaController.show();
         }
-        return false;
+        ((AndroidMediaController) mMediaController).dispatchTouchEvent(ev);
+        return true;
     }
 
     @Override
