@@ -111,10 +111,12 @@ public class PlayerActivity extends AppCompatActivity {
                 doAction();
                 break;
             case R.id.bt_sound_up:
-                audioManager.adjustStreamVolume(AudioManager.STREAM_MUSIC, 1, AudioManager
-                        .FLAG_PLAY_SOUND);
+                audioManager.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager
+                        .ADJUST_RAISE, AudioManager.FLAG_PLAY_SOUND);
                 break;
             case R.id.bt_sound_down:
+                audioManager.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager
+                        .ADJUST_LOWER, AudioManager.FLAG_PLAY_SOUND);
                 break;
             case R.id.bt_bright_up:
                 break;
