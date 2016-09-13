@@ -1,4 +1,4 @@
-package moe.yamabu.videodemo;
+package moe.yamabu.videodemo.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -7,8 +7,13 @@ import android.support.v7.widget.RecyclerView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import moe.yamabu.videodemo.R;
+import moe.yamabu.videodemo.adapter.MainRvAdapter;
+import moe.yamabu.videodemo.beans.MainRvList;
+import moe.yamabu.videodemo.contract.view.MainView;
+import moe.yamabu.videodemo.presenter.MainPresenter;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements MainView {
     @BindView(R.id.rv)
     RecyclerView recyclerView;
 
@@ -17,22 +22,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        initView();
+        MainPresenter mainPresenter = new MainPresenter().addTaskListener(this);
+        mainPresenter.getData();
     }
 
-    private void initView() {
-        MainRvList mainRvList = new MainRvList();
-
-        VideoInfo videoInfo = new VideoInfo();
-        videoInfo.setTitle("CCTV1");
-        videoInfo.setUri("http://ivi.bupt.edu.cn/hls/cctv1hd.m3u8");
-        mainRvList.getVideoInfos().add(videoInfo);
-
-        videoInfo = new VideoInfo();
-        videoInfo.setTitle("Flower Dance");
-        videoInfo.setUri("http://mc.yamabu.moe/fd.mp4");
-        mainRvList.getVideoInfos().add(videoInfo);
-
+    @Override
+    public void onGetList(MainRvList mainRvList) {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         MainRvAdapter mainRvAdapter = new MainRvAdapter(this);
         mainRvAdapter.setData(mainRvList);

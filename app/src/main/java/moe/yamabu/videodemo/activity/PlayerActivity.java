@@ -1,4 +1,4 @@
-package moe.yamabu.videodemo;
+package moe.yamabu.videodemo.activity;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -14,6 +14,8 @@ import android.widget.TableLayout;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import moe.yamabu.videodemo.R;
+import moe.yamabu.videodemo.beans.VideoInfo;
 import moe.yamabu.videodemo.ijk.AndroidMediaController;
 import moe.yamabu.videodemo.ijk.IjkVideoView;
 import tv.danmaku.ijk.media.player.IjkMediaPlayer;

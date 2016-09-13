@@ -1,4 +1,4 @@
-package moe.yamabu.videodemo;
+package moe.yamabu.videodemo.activity;
 
 import android.annotation.SuppressLint;
 import android.support.v7.app.ActionBar;

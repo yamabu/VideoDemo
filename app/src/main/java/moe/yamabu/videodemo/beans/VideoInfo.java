@@ -1,4 +1,4 @@
-package moe.yamabu.videodemo;
+package moe.yamabu.videodemo.beans;
 
 import android.os.Parcel;
 import android.os.Parcelable;

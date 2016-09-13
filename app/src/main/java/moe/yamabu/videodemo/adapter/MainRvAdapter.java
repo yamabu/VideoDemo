@@ -1,4 +1,4 @@
-package moe.yamabu.videodemo;
+package moe.yamabu.videodemo.adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,6 +11,10 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import moe.yamabu.videodemo.R;
+import moe.yamabu.videodemo.activity.PlayerActivity;
+import moe.yamabu.videodemo.beans.MainRvList;
+import moe.yamabu.videodemo.beans.VideoInfo;
 
 public class MainRvAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     Context mContext;
